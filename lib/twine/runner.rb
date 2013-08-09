@@ -209,6 +209,8 @@ module Twine
       total_strings = 0
       strings_per_lang = {}
       all_keys = Set.new
+      translation_keys = Set.new
+      missing_words = Set.new
       duplicate_keys = Set.new
       keys_without_tags = Set.new
       @strings.language_codes.each do |code|
@@ -229,6 +231,9 @@ module Twine
             strings_per_lang[code] += 1
           end
 
+          hash = {row.key => row.translations}
+          translation_keys.add(hash)
+
           if row.tags == nil || row.tags.length == 0
             keys_without_tags.add(row.key)
           end
@@ -239,6 +244,22 @@ module Twine
       puts "Total number of strings = #{total_strings}"
       @strings.language_codes.each do |code|
         puts "#{code}: #{strings_per_lang[code]}"
+        
+        all_keys.each do |keyword|
+          words = translation_keys.select { |item| item[keyword] }
+          if words.count > 0
+            hashy = words.first[keyword]
+            if !hashy[code]
+              missing_words.add(keyword)
+            end
+          end
+        end
+        
+        puts "untranslated words: " << missing_words.count.to_s << "\n"
+
+        missing_words.each do |val|
+          puts "--> " << val
+        end
       end
 
       if duplicate_keys.length > 0
