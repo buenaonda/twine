@@ -96,7 +96,7 @@ module Twine
                   end
 
                   f.print "msgid \"#{key}\"\n"
-                  f.print "msgstr \"#{value}\"\n"
+                  f.print "msgstr \"#{value}\"\n\n"
                 end
               end
             end
