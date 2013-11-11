@@ -117,7 +117,7 @@ module Twine
               when "comment"
                 current_row.comment = value
               when 'tags'
-                current_row.tags = value.split(',')
+                current_row.tags = value.split(',').collect{|x| x.strip}
               else
                 if !@language_codes.include? key
                   add_language_code(key)
