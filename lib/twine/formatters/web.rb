@@ -70,7 +70,7 @@ module Twine
                 value = value.gsub("%d", "%@")
                 token_index = 0
                 while value.include? "%@" do
-                  value = value.sub("%@", "{{#{token_index}}}")
+                  value = value.sub("%@", "{{s#{token_index}}}")
                   token_index += 1
                 end
 
