@@ -57,6 +57,7 @@ module Twine
               if row.matches_tags?(@options[:tags], @options[:untagged])
                 key = row.key
                 key = key.gsub('"', '\\\\"')
+                key = key.split[0]
 
                 value = row.translated_string_for_lang(lang, default_lang)
                 value = value.gsub('"', '\\\\"')
