@@ -5,9 +5,10 @@ require 'twine/formatters/flash'
 require 'twine/formatters/gettext'
 require 'twine/formatters/jquery'
 require 'twine/formatters/web'
+require 'twine/formatters/ngtranslate'
 
 module Twine
   module Formatters
-    FORMATTERS = [Formatters::Apple, Formatters::Android, Formatters::Gettext, Formatters::JQuery, Formatters::Flash, Formatters::SeahorseWeb]
+    FORMATTERS = [Formatters::Apple, Formatters::Android, Formatters::Gettext, Formatters::JQuery, Formatters::Flash, Formatters::SeahorseWeb, Formatters::NgTranslate]
   end
 end
