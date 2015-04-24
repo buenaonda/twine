@@ -159,6 +159,16 @@ module Twine
           end
         end
       end
+
+      def get_default_lang(lang, language_codes)
+        default_lang = language_codes[0]
+
+        if (lang =~ /[a-zA-Z]{2}_[a-zA-Z]{2,}/ and language_codes.index(lang[0,2]))
+          default_lang = lang[0,2]
+        end
+
+        return default_lang
+      end
     end
   end
 end
